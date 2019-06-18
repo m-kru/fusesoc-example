@@ -1,0 +1,48 @@
+CAPI=2:
+
+name: ::fusesoc_example:0
+
+filesets:
+    rtl:
+        files:
+            - rtl/top.vhd : {file_type : vhdlSource-2008}
+        logical_name : my_custom_lib
+
+    board_1_xdc:
+        files:
+            - board_1.xdc : {file_type: xdc}
+
+    board_2_xdc:
+        files:
+            - board_2.xdc : {file_type: xdc}
+
+targets:
+    default:
+        filesets : [rtl]
+
+    custom_target_1:
+        default_tool: vivado
+        filesets:
+            - rtl
+            - board_1_xdc
+        tools:
+            vivado:
+                part: xc7a100tcsg324-1
+        toplevel: top
+
+    custom_target_2:
+        default_tool: vivado
+        filesets:
+            - rtl
+            - board_2_xdc
+        parameters : [TOP_ADD_DELAY=true]
+        tools:
+            vivado:
+                part: xc7a100tcsg324-1
+        toplevel: top
+
+parameters:
+    TOP_ADD_DELAY:
+        datatype    : bool
+        description : Extra 1 clock delay
+        paramtype   : generic
