@@ -8,6 +8,10 @@ filesets:
             - rtl/top.vhd : {file_type : vhdlSource-2008}
         logical_name : my_custom_lib
 
+    synthesis_options_1:
+        files:
+            - synthesis_options.tcl : {file_type : tclSource}
+
     board_1_xdc:
         files:
             - board_1.xdc : {file_type: xdc}
@@ -34,6 +38,7 @@ targets:
         default_tool: vivado
         filesets:
             - rtl
+            - synthesis_options_1
             - board_2_xdc
         parameters : [TOP_ADD_DELAY=true]
         tools:
