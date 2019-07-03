@@ -12,6 +12,12 @@ filesets:
         files:
             - synthesis_options.tcl : {file_type : tclSource}
 
+    target_for_constraints_manager:
+        files:
+            - constr/target.xdc
+            - constr/target.tcl : {file_type : tclSource}
+        file_type: xdc
+
     board_1_xdc:
         files:
             - board_1.xdc : {file_type: xdc}
@@ -28,6 +34,7 @@ targets:
         default_tool: vivado
         filesets:
             - rtl
+            - target_for_constraints_manager
             - board_1_xdc
         tools:
             vivado:
@@ -39,6 +46,7 @@ targets:
         filesets:
             - rtl
             - synthesis_options_1
+            - target_for_constraints_manager
             - board_2_xdc
         parameters : [TOP_ADD_DELAY=true]
         tools:
